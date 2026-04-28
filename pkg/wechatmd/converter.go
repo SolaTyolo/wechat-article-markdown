@@ -12,10 +12,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/solat/wechat-article-markdown/pkg/wechatmd/core"
-	drv "github.com/solat/wechat-article-markdown/pkg/wechatmd/driver"
-	prs "github.com/solat/wechat-article-markdown/pkg/wechatmd/parser"
-	stg "github.com/solat/wechat-article-markdown/pkg/wechatmd/storage"
+	"github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/core"
+	drv "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/driver"
+	prs "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/parser"
+	stg "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/storage"
 )
 
 const (

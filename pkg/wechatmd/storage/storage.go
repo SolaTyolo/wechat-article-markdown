@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 
-	"github.com/solat/wechat-article-markdown/pkg/wechatmd/core"
+	"github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/core"
 )
 
 // Storage persists article markdown and image assets.

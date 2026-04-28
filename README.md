@@ -4,8 +4,6 @@
 
 A reusable Go library that converts WeChat Official Account article URLs into structured markdown output, with pluggable storage and driver interfaces.
 
-Implementation approach references [jackwener/wechat-article-to-markdown](https://github.com/jackwener/wechat-article-to-markdown).
-
 ## Table of Contents
 
 - [Features](#features)
@@ -27,7 +25,7 @@ Implementation approach references [jackwener/wechat-article-to-markdown](https:
 ## Install
 
 ```bash
-go get github.com/solat/wechat-article-markdown
+go get github.com/SolaTyolo/wechat-article-markdown
 ```
 
 ## Quick Start

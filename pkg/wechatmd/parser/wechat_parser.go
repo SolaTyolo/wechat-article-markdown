@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/solat/wechat-article-markdown/pkg/wechatmd/core"
+	"github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/core"
 )
 
 // WechatParser extracts metadata/content from WeChat article HTML.

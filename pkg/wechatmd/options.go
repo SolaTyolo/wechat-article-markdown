@@ -3,9 +3,9 @@ package wechatmd
 import (
 	"net/http"
 
-	drv "github.com/solat/wechat-article-markdown/pkg/wechatmd/driver"
-	prs "github.com/solat/wechat-article-markdown/pkg/wechatmd/parser"
-	stg "github.com/solat/wechat-article-markdown/pkg/wechatmd/storage"
+	drv "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/driver"
+	prs "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/parser"
+	stg "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/storage"
 )
 
 type converterConfig struct {

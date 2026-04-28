@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/solat/wechat-article-markdown/pkg/wechatmd/core"
+	"github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/core"
 )
 
 // HTMLDriver fetches HTML from a page URL through plain HTTP.

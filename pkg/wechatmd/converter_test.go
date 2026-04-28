@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/solat/wechat-article-markdown/pkg/wechatmd/core"
-	prs "github.com/solat/wechat-article-markdown/pkg/wechatmd/parser"
+	"github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/core"
+	prs "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/parser"
 )
 
 type memoryStorage struct {

@@ -3,7 +3,7 @@ package driver
 import (
 	"context"
 
-	"github.com/solat/wechat-article-markdown/pkg/wechatmd/core"
+	"github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/core"
 )
 
 // Driver fetches article page source by URL.

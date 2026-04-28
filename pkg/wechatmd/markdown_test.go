@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
-	prs "github.com/solat/wechat-article-markdown/pkg/wechatmd/parser"
+	prs "github.com/SolaTyolo/wechat-article-markdown/pkg/wechatmd/parser"
 )
 
 func TestSelectionToMarkdown(t *testing.T) {

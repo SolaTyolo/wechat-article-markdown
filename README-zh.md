@@ -4,8 +4,6 @@
 
 一个可复用的 Go 库：输入微信公众号文章 URL，输出结构化 Markdown 结果，并支持可插拔的存储与抓取驱动接口。
 
-实现思路参考 [jackwener/wechat-article-to-markdown](https://github.com/jackwener/wechat-article-to-markdown)。
-
 ## 目录
 
 - [功能特性](#功能特性)
@@ -27,7 +25,7 @@
 ## 安装
 
 ```bash
-go get github.com/solat/wechat-article-markdown
+go get github.com/SolaTyolo/wechat-article-markdown
 ```
 
 ## 快速开始
