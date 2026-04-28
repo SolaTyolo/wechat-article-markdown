@@ -1,0 +1,14 @@
+# Go build artifacts
+bin/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Local binary generated in project root
+wechat-article-markdown
+

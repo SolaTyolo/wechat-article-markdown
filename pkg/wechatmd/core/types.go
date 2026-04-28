@@ -1,0 +1,37 @@
+package core
+
+import "time"
+
+// FetchResult is the raw payload returned by a Driver.
+type FetchResult struct {
+	URL  string
+	HTML string
+}
+
+// ImageAsset stores an image mapping and optional binary payload.
+type ImageAsset struct {
+	SourceURL    string
+	RelativePath string
+	FileName     string
+	ContentType  string
+	Data         []byte
+}
+
+// ArticleResult is the final structured output for one URL conversion.
+type ArticleResult struct {
+	Title          string
+	SafeTitle      string
+	AccountName    string
+	PublishedAt    *time.Time
+	SourceURL      string
+	OutputDir      string
+	MarkdownPath   string
+	Markdown       string
+	Images         []ImageAsset
+	RawHTMLContent string
+}
+
+// ConvertOptions controls per-call conversion behavior.
+type ConvertOptions struct {
+	OutputRoot string
+}
