@@ -2,7 +2,7 @@ package core
 
 import "time"
 
-// FetchResult is the raw payload returned by a Driver.
+// FetchResult is the raw payload returned by a core.Driver.
 type FetchResult struct {
 	URL  string
 	HTML string

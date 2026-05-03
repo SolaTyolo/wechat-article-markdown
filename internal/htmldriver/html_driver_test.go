@@ -1,4 +1,4 @@
-package driver_test
+package htmldriver_test
 
 import (
 	"context"
@@ -6,12 +6,12 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/kbsink-org/kbsink/internal/htmldriver"
 	"github.com/kbsink-org/kbsink/pkg/core"
-	"github.com/kbsink-org/kbsink/pkg/driver"
 )
 
-func TestNewHTMLDriverFetch_ErrorCodes(t *testing.T) {
-	d := driver.NewHTMLDriver(nil, "")
+func TestHTMLDriverFetch_ErrorCodes(t *testing.T) {
+	d := htmldriver.New(nil, "Mozilla/5.0 (test)")
 
 	_, err := d.Fetch(context.Background(), "")
 	if got := core.ErrorCodeOf(err); got != core.ErrCodeInvalidArgument {
@@ -24,13 +24,13 @@ func TestNewHTMLDriverFetch_ErrorCodes(t *testing.T) {
 	}
 }
 
-func TestNewHTMLDriverFetch_UnexpectedStatusCode(t *testing.T) {
+func TestHTMLDriverFetch_UnexpectedStatusCode(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusForbidden)
 	}))
 	defer ts.Close()
 
-	d := driver.NewHTMLDriver(ts.Client(), "")
+	d := htmldriver.New(ts.Client(), "Mozilla/5.0 (test)")
 	_, err := d.Fetch(context.Background(), ts.URL)
 	if got := core.ErrorCodeOf(err); got != core.ErrCodeDriverUnexpectedHTTP {
 		t.Fatalf("expected %s, got %s (err=%v)", core.ErrCodeDriverUnexpectedHTTP, got, err)

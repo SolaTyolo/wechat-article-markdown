@@ -74,12 +74,6 @@ func (s *S3Storage) Save(ctx context.Context, article *core.ArticleResult) error
 }
 ```
 
-## 示例
-
-```bash
-go run ./examples/basic "https://mp.weixin.qq.com/s/xxxx"
-```
-
 ## CLI
 
 本地安装/构建：
@@ -91,7 +85,7 @@ go install ./cmd/kb-sink-md
 运行：
 
 ```bash
-kb-sink-md -o output --video-mode embed "https://mp.weixin.qq.com/s/xxxx"
+kb-sink-md --plugin wechat -o output --video-mode embed "https://mp.weixin.qq.com/s/xxxx"
 ```
 
 抖音支持当前仍在集成中，暂未开放。

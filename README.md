@@ -74,12 +74,6 @@ func (s *S3Storage) Save(ctx context.Context, article *core.ArticleResult) error
 }
 ```
 
-## Example
-
-```bash
-go run ./examples/basic "https://mp.weixin.qq.com/s/xxxx"
-```
-
 ## CLI
 
 Build/install locally:
@@ -91,7 +85,7 @@ go install ./cmd/kb-sink-md
 Run:
 
 ```bash
-kb-sink-md -o output --video-mode embed "https://mp.weixin.qq.com/s/xxxx"
+kb-sink-md --plugin wechat -o output --video-mode embed "https://mp.weixin.qq.com/s/xxxx"
 ```
 
 Douyin support is currently under integration and not available yet.

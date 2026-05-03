@@ -14,7 +14,7 @@ import (
 	"strings"
 
 	"github.com/kbsink-org/kbsink/pkg/core"
-	drv "github.com/kbsink-org/kbsink/pkg/driver"
+	"github.com/kbsink-org/kbsink/pkg/driver"
 	prs "github.com/kbsink-org/kbsink/pkg/parser"
 	stg "github.com/kbsink-org/kbsink/pkg/storage"
 )
@@ -30,9 +30,9 @@ var (
 
 // Converter orchestrates driver -> parser -> image fetch -> storage.
 type Converter struct {
-	driver drv.Driver
-	parser prs.Parser
-	store  stg.Storage
+	driver core.Driver
+	parser core.Parser
+	store  core.Storage
 	client *http.Client
 }
 
@@ -50,7 +50,7 @@ func NewConverter(opts ...Option) *Converter {
 	}
 
 	if cfg.driver == nil {
-		cfg.driver = drv.NewHTMLDriver(cfg.client)
+		cfg.driver = driver.NewHTMLDriver(cfg.client, "")
 	}
 	if cfg.parser == nil {
 		cfg.parser = prs.NewWechatParser()

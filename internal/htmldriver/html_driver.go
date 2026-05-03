@@ -1,4 +1,4 @@
-package driver
+package htmldriver
 
 import (
 	"context"
@@ -12,14 +12,16 @@ import (
 
 // HTMLDriver fetches HTML from a page URL through plain HTTP.
 type HTMLDriver struct {
-	client *http.Client
+	client    *http.Client
+	userAgent string
 }
 
-func NewHTMLDriver(client *http.Client) *HTMLDriver {
+// New returns an HTML fetch driver. userAgent must be non-empty (callers typically normalize empty to a default).
+func New(client *http.Client, userAgent string) *HTMLDriver {
 	if client == nil {
 		client = http.DefaultClient
 	}
-	return &HTMLDriver{client: client}
+	return &HTMLDriver{client: client, userAgent: userAgent}
 }
 
 func (d *HTMLDriver) Fetch(ctx context.Context, rawURL string) (*core.FetchResult, error) {
@@ -31,7 +33,7 @@ func (d *HTMLDriver) Fetch(ctx context.Context, rawURL string) (*core.FetchResul
 	if err != nil {
 		return nil, core.NewCodedError(core.ErrCodeDriverBuildRequest, "build request", err)
 	}
-	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; wechatmd/1.0)")
+	req.Header.Set("User-Agent", d.userAgent)
 
 	resp, err := d.client.Do(req)
 	if err != nil {

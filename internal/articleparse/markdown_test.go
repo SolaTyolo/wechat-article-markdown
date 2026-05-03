@@ -1,11 +1,10 @@
-package kbsink
+package articleparse
 
 import (
 	"strings"
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
-	prs "github.com/kbsink-org/kbsink/pkg/parser"
 )
 
 func TestSelectionToMarkdown(t *testing.T) {
@@ -19,7 +18,7 @@ func TestSelectionToMarkdown(t *testing.T) {
 	if err != nil {
 		t.Fatalf("build doc: %v", err)
 	}
-	md := prs.SelectionToMarkdown(doc.Find("#js_content"))
+	md := SelectionToMarkdown(doc.Find("#js_content"))
 	wantTokens := []string{
 		"## Title",
 		"text **bold**",
@@ -52,7 +51,7 @@ func TestSelectionToMarkdown_SkipEmptyListItemsAndFormatCodeLines(t *testing.T) 
 	if err != nil {
 		t.Fatalf("build doc: %v", err)
 	}
-	md := prs.SelectionToMarkdown(doc.Find("#js_content"))
+	md := SelectionToMarkdown(doc.Find("#js_content"))
 	if strings.Contains(md, "- \n") {
 		t.Fatalf("unexpected empty list item in markdown:\n%s", md)
 	}
@@ -82,7 +81,7 @@ func TestSelectionToMarkdown_CleanWechatCodeArtifacts(t *testing.T) {
 	if err != nil {
 		t.Fatalf("build doc: %v", err)
 	}
-	md := prs.SelectionToMarkdown(doc.Find("#js_content"))
+	md := SelectionToMarkdown(doc.Find("#js_content"))
 	if strings.Contains(md, "lineounter(") || strings.Contains(md, "eounter(") {
 		t.Fatalf("artifact prefix not cleaned:\n%s", md)
 	}
@@ -99,7 +98,7 @@ func TestSelectionToMarkdown_BlockquoteInlineBullets(t *testing.T) {
 	if err != nil {
 		t.Fatalf("build doc: %v", err)
 	}
-	md := prs.SelectionToMarkdown(doc.Find("#js_content"))
+	md := SelectionToMarkdown(doc.Find("#js_content"))
 	if !strings.Contains(md, "> • A item text") {
 		t.Fatalf("missing first bullet quote:\n%s", md)
 	}
