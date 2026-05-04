@@ -13,7 +13,7 @@ const (
 	// wechatUserAgent matches default historical behaviour for mp.weixin.qq.com pages.
 	wechatUserAgent = defaultUserAgent
 	// xhsUserAgent is a common mobile Safari UA; XHS pages may vary by client hints.
-	xhsUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+	xhsUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
 )
 
 // NewHTMLDriver returns an HTTP HTML fetch driver. If userAgent is empty or whitespace, defaultUserAgent is used.
@@ -34,3 +34,6 @@ func NewWechatDriver(client *http.Client) core.Driver {
 func NewXHSDriver(client *http.Client) core.Driver {
 	return htmldriver.New(client, xhsUserAgent)
 }
+
+// DefaultXHSUserAgent is the User-Agent used by NewXHSDriver; reuse for CDN image requests.
+func DefaultXHSUserAgent() string { return xhsUserAgent }

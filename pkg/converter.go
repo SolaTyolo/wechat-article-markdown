@@ -179,6 +179,15 @@ func (c *Converter) downloadAsset(ctx context.Context, assetURL string) ([]byte,
 	if err != nil {
 		return nil, "", "", err
 	}
+	if u, parseErr := url.Parse(assetURL); parseErr == nil {
+		host := strings.ToLower(u.Host)
+		if strings.Contains(host, "xhscdn.com") || strings.Contains(host, "xiaohongshu.com") {
+			// XHS CDNs often return 403 without a browser-like UA and same-site Referer.
+			req.Header.Set("Referer", "https://www.xiaohongshu.com/")
+			req.Header.Set("User-Agent", driver.DefaultXHSUserAgent())
+		}
+	}
+
 	resp, err := c.client.Do(req)
 	if err != nil {
 		return nil, "", "", err
@@ -208,12 +217,48 @@ func sanitizeFileName(s string) string {
 	return s
 }
 
+// preferredImageExt picks a widely-supported suffix for common image/* MIME types.
+func preferredImageExt(mediaType string) string {
+	switch strings.ToLower(strings.TrimSpace(mediaType)) {
+	case "image/jpeg", "image/jpg":
+		return ".jpg"
+	case "image/png":
+		return ".png"
+	case "image/webp":
+		return ".webp"
+	case "image/gif":
+		return ".gif"
+	default:
+		return ""
+	}
+}
+
+// pickKnownGoodExt prefers .jpg over .jpe (mime can list .jpe first) so previews open reliably.
+func pickKnownGoodExt(exts []string) string {
+	priority := []string{".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".bmp", ".ico"}
+	lower := make([]string, len(exts))
+	for i, e := range exts {
+		lower[i] = strings.ToLower(e)
+	}
+	for _, want := range priority {
+		for _, e := range lower {
+			if e == want {
+				return e
+			}
+		}
+	}
+	return exts[0]
+}
+
 func assetExt(contentType, sourceURL string) string {
 	if contentType != "" {
 		mediaType, _, err := mime.ParseMediaType(contentType)
 		if err == nil {
-			if exts, ok := mime.ExtensionsByType(mediaType); ok == nil && len(exts) > 0 {
-				return exts[0]
+			if ext := preferredImageExt(mediaType); ext != "" {
+				return ext
+			}
+			if exts, extErr := mime.ExtensionsByType(mediaType); extErr == nil && len(exts) > 0 {
+				return pickKnownGoodExt(exts)
 			}
 		}
 	}

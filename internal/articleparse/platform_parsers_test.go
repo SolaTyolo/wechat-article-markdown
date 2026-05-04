@@ -25,6 +25,19 @@ func TestXiaohongshuParser_Parse(t *testing.T) {
 	if strings.TrimSpace(res.Markdown) == "" {
 		t.Fatalf("expected non-empty markdown from real snapshot")
 	}
+	if len(res.Images) < 2 {
+		t.Fatalf("expected at least 2 note images from multi-image snapshot, got %d", len(res.Images))
+	}
+	if !strings.Contains(res.Markdown, "![](http") && !strings.Contains(res.Markdown, "![](https") {
+		t.Fatalf("expected markdown to embed images as ![](...), got prefix %q", truncate(res.Markdown, 200))
+	}
+}
+
+func truncate(s string, n int) string {
+	if len(s) <= n {
+		return s
+	}
+	return s[:n] + "..."
 }
 
 func TestWechatParser_RealSnapshot(t *testing.T) {
