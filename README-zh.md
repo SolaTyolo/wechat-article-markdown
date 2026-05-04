@@ -13,6 +13,7 @@
   - [自定义 Driver](#自定义-driver)
   - [自定义 Storage（例如 S3）](#自定义-storage例如-s3)
 - [示例](#示例)
+- [命令行工具](#命令行工具)
 
 ## 功能特性
 
@@ -74,19 +75,7 @@ func (s *S3Storage) Save(ctx context.Context, article *core.ArticleResult) error
 }
 ```
 
-## CLI
+## 命令行工具
 
-本地安装/构建：
-
-```bash
-go install ./cmd/kb-sink-md
-```
-
-运行：
-
-```bash
-kb-sink-md --plugin wechat -o output --video-mode embed "https://mp.weixin.qq.com/s/xxxx"
-```
-
-使用 **`--plugin douyin`** 时：仍使用本仓库的 **`kb-sink-md`**，并把 [douyin-plugin](https://github.com/kbsink-org/douyin-plugin) 提供的 **`kbsink-plugin-douyin`** 安装到 `PATH`（或从该仓库执行 `go build -o kbsink-plugin-douyin ./cmd/kbsink-plugin-douyin`）。`kb-sink-md` 进程内仅注册 **wechat**、**xhs**；抖音以外部子进程方式执行（协议见 `pkg/pluginexec`）。也可设置环境变量 **`KBSINK_PLUGIN_DOUYIN`** 指向插件二进制路径。
+本仓库仅提供 **Go 库**。若需要命令行（微信 / 小红书 / 抖音链接转换），请使用 **[kbsink-cli](https://github.com/kbsink-org/kbsink-cli)**（`kbsink` 可执行文件：可省略 `--plugin`，按 URL 自动识别平台）。
 

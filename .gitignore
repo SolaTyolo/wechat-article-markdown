@@ -11,6 +11,3 @@ dist/
 
 output/
 
-# Local binary generated in project root
-./kb-sink-md
-

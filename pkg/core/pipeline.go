@@ -20,7 +20,7 @@ type Storage interface {
 	Save(ctx context.Context, article *ArticleResult) error
 }
 
-// Plugin is a named pair of Parser and Driver for registry and CLI use.
+// Plugin is a named pair of Parser and Driver for registry-based wiring.
 type Plugin interface {
 	Name() string
 	NewComponents(client *http.Client) (Parser, Driver, error)

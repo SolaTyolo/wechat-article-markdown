@@ -13,6 +13,7 @@ A reusable Go library that converts WeChat Official Account article URLs into st
   - [Custom Driver](#custom-driver)
   - [Custom Storage (e.g. S3)](#custom-storage-eg-s3)
 - [Example](#example)
+- [Command-line tool](#command-line-tool)
 
 ## Features
 
@@ -74,19 +75,7 @@ func (s *S3Storage) Save(ctx context.Context, article *core.ArticleResult) error
 }
 ```
 
-## CLI
+## Command-line tool
 
-Build/install locally:
-
-```bash
-go install ./cmd/kb-sink-md
-```
-
-Run:
-
-```bash
-kb-sink-md --plugin wechat -o output --video-mode embed "https://mp.weixin.qq.com/s/xxxx"
-```
-
-For **Douyin** (`--plugin douyin`), keep using **`kb-sink-md`** from this repository and add **`kbsink-plugin-douyin`** to your `PATH` (releases or `go build` from [douyin-plugin](https://github.com/kbsink-org/douyin-plugin), `./cmd/kbsink-plugin-douyin`). The core `kb-sink-md` binary registers only **wechat** and **xhs** in-process; Douyin runs as an external subprocess via the stdin/stdout JSON protocol (`pkg/pluginexec`). You may also set **`KBSINK_PLUGIN_DOUYIN`** to the plugin binary path instead of relying on `PATH`.
+This repository is the **Go library only**. For a CLI that converts WeChat, Xiaohongshu, and Douyin links, use **[kbsink-cli](https://github.com/kbsink-org/kbsink-cli)** (`kbsink` binary: optional `--plugin`, or auto-detect from URL).
 

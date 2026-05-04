@@ -1,5 +1,5 @@
 // Package storage defines constructors for kbsink persistence. Types live in core (Storage interface)
-// and internal/store; kb-sink-md defaults to local disk via NewLocalStorage.
+// and internal/store; the default Converter uses local disk via NewLocalStorage.
 package storage
 
 import (
